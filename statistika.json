@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DataDetectiveDataset",
+  "type": "object",
+  "properties": {
+    "dataset_name": { "type": "string" },
+    "created_by": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "values": {
+      "type": "array",
+      "items": { "type": "number" },
+      "maxItems": 10
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "mean": { "type": "number" },
+        "median": { "type": "number" },
+        "mode": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "outlier_candidate": { "type": "number" }
+      }
+    },
+    "games": {
+      "type": "object",
+      "properties": {
+        "game_1_tebak_mean": {
+          "type": "object",
+          "properties": {
+            "question": { "type": "string" },
+            "options": {
+              "type": "array",
+              "items": { "type": "number" }
+            },
+            "answer": { "type": "number" }
+          }
+        },
+        "game_2_outlier": {
+          "type": "object",
+          "properties": {
+            "question": { "type": "string" },
+            "options": {
+              "type": "array",
+              "items": { "type": "number" }
+            },
+            "answer": { "type": "number" }
+          }
+        },
+        "game_3_sorting": {
+          "type": "object",
+          "properties": {
+            "question": { "type": "string" },
+            "correct_order": {
+              "type": "array",
+              "items": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["dataset_name", "values"],
+  "example": {
+    "dataset_name": "nilai_ujian_1",
+    "created_by": "kelompok 5",
+    "created_at": "2025-11-12T08:00:00Z",
+    "values": [75, 80, 85, 90, 95],
+    "statistics": {
+      "mean": 85,
+      "median": 85,
+      "mode": [75, 80, 85, 90, 95],
+      "outlier_candidate": 95
+    },
+    "games": {
+      "game_1_tebak_mean": {
+        "question": "Berapakah nilai rata-rata (mean) dari dataset di atas?",
+        "options": [80, 85, 90],
+        "answer": 85
+      },
+      "game_2_outlier": {
+        "question": "Nilai manakah yang paling mungkin merupakan outlier?",
+        "options": [75, 95],
+        "answer": 95
+      },
+      "game_3_sorting": {
+        "question": "Urutkan nilai dari kecil ke besar.",
+        "correct_order": [75, 80, 85, 90, 95]
+      }
+    }
+  }
+}
